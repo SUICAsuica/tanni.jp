@@ -3,11 +3,177 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=/support/">
   <title>Oh-o! Tanni サポート</title>
-  <link rel="canonical" href="https://tanni.jp/support/">
+  <meta name="description" content="Oh-o! Tanni のサポート、利用規約、プライバシーポリシー、特定商取引法に基づく表記への案内です。">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18151f;
+      --muted: #5f5a6b;
+      --line: #e7e1f2;
+      --brand: #7b3fe4;
+      --bg: #fbf9ff;
+      --panel: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 20% 0%, #f0e7ff 0, transparent 28rem), var(--bg);
+      line-height: 1.75;
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 64px 0;
+    }
+
+    header {
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    a.panel {
+      display: block;
+      min-height: 128px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .panel strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--brand);
+      font-size: 18px;
+    }
+
+    .panel span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    a {
+      color: var(--brand);
+      font-weight: 700;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    .contact {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      text-decoration: none;
+    }
+
+    footer {
+      padding-top: 28px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+  </style>
 </head>
 <body>
-  <p><a href="/support/">Oh-o! Tanni サポート</a></p>
+  <main>
+    <header>
+      <p class="eyebrow">Oh-o! Tanni</p>
+      <h1>サポート</h1>
+      <p class="lead">明治大学生向けの時間割・教室通知アプリ「Oh-o! Tanni」のサポートページです。問い合わせ、利用規約、プライバシーポリシー、特定商取引法に基づく表記を確認できます。</p>
+    </header>
+
+    <nav class="links" aria-label="主要ページ">
+      <a class="panel" href="/support/">
+        <strong>お問い合わせ</strong>
+        <span>ログイン、不具合、通知、ウィジェット、課金、データ削除について連絡できます。</span>
+      </a>
+      <a class="panel" href="/privacy/">
+        <strong>プライバシーポリシー</strong>
+        <span>取得する情報、利用目的、外部サービス、データ削除について確認できます。</span>
+      </a>
+      <a class="panel" href="/terms/">
+        <strong>利用規約</strong>
+        <span>アプリの利用条件、禁止事項、免責事項、問い合わせ先を確認できます。</span>
+      </a>
+      <a class="panel" href="/commercial/">
+        <strong>特定商取引法に基づく表記</strong>
+        <span>任意の開発支援用アプリ内課金に関する取引条件を確認できます。</span>
+      </a>
+    </nav>
+
+    <section>
+      <h2>問い合わせ先</h2>
+      <p>アプリに関する問い合わせは、下記メールアドレスまでご連絡ください。</p>
+      <a class="contact" href="mailto:support@tanni.jp">support@tanni.jp</a>
+    </section>
+
+    <section>
+      <h2>アプリについて</h2>
+      <p>本アプリは、明治大学、Oh-o! Meiji、その他の大学公式システムが提供、運営、承認、公認または保証するサービスではありません。</p>
+      <p>授業情報は変更される場合があります。最新情報は大学公式情報もあわせて確認してください。</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Shori Kosaka. All rights reserved.</p>
+    </footer>
+  </main>
 </body>
 </html>
