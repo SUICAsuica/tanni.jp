@@ -3,182 +3,793 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Oh-o! Tanni サポート</title>
-  <meta name="description" content="Oh-o! Tanni のサポート、利用規約、プライバシーポリシー、特定商取引法に基づく表記への案内です。">
+  <title>Oh-o! Tanni | 明治生の時間割アプリ</title>
+  <meta name="description" content="Oh-o! Tanni は、時間割、欠席数、ウィジェット、チャットをまとめて使える明治大学生向け iOS アプリです。">
+  <meta property="og:site_name" content="Oh-o! Tanni">
+  <meta property="og:title" content="Oh-o! Tanni | 明治生の時間割アプリ">
+  <meta property="og:description" content="時間割も、欠席数も、チャットも。明治生の毎日を軽くする iOS アプリです。">
+  <meta property="og:image" content="https://tanni.jp/assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/app-icon.png">
   <style>
     :root {
       color-scheme: light;
-      --ink: #18151f;
-      --muted: #5f5a6b;
-      --line: #e7e1f2;
+      --ink: #16131c;
+      --muted: #686173;
+      --soft: #f7f4fb;
+      --line: #ebe5f4;
       --brand: #7b3fe4;
-      --bg: #fbf9ff;
+      --brand-dark: #4d249d;
+      --green: #16a66a;
+      --green-soft: #e8f8f1;
       --panel: #ffffff;
+      --shadow: 0 24px 80px rgba(72, 45, 112, 0.15);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Segoe UI", sans-serif;
       color: var(--ink);
-      background: radial-gradient(circle at 20% 0%, #f0e7ff 0, transparent 28rem), var(--bg);
-      line-height: 1.75;
+      background: #fff;
+      line-height: 1.7;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(22px);
+      border-bottom: 1px solid rgba(235, 229, 244, 0.78);
+    }
+
+    .nav {
+      width: min(1160px, calc(100% - 40px));
+      min-height: 68px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      box-shadow: 0 8px 22px rgba(123, 63, 228, 0.22);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 16px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--ink);
+      text-decoration: none;
     }
 
     main {
-      width: min(920px, calc(100% - 32px));
+      overflow: hidden;
+    }
+
+    .hero {
+      min-height: calc(88vh - 68px);
+      display: grid;
+      align-items: center;
+      padding: 72px 0 46px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, var(--soft) 100%),
+        radial-gradient(circle at 88% 18%, rgba(22, 166, 106, 0.12), transparent 30rem),
+        radial-gradient(circle at 12% 12%, rgba(123, 63, 228, 0.10), transparent 32rem),
+        #fff;
+    }
+
+    .hero-inner {
+      width: min(1160px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 64px 0;
-    }
-
-    header {
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .eyebrow {
-      margin: 0 0 8px;
-      color: var(--brand);
-      font-size: 14px;
-      font-weight: 700;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+      gap: 64px;
+      align-items: center;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.15;
+      font-size: clamp(54px, 8vw, 104px);
+      line-height: 0.92;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    .hero-copy {
+      margin: 24px 0 0;
+      max-width: 620px;
+      color: var(--ink);
+      font-size: clamp(23px, 3.1vw, 42px);
+      line-height: 1.18;
+      font-weight: 950;
       letter-spacing: 0;
     }
 
-    .lead {
+    .hero-lead {
       margin: 18px 0 0;
-      max-width: 720px;
+      max-width: 560px;
       color: var(--muted);
       font-size: 17px;
+      font-weight: 650;
     }
 
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
       gap: 12px;
-      padding: 32px 0;
-      border-bottom: 1px solid var(--line);
+      margin-top: 30px;
     }
 
-    a.panel {
-      display: block;
-      min-height: 128px;
-      padding: 18px;
-      border: 1px solid var(--line);
+    .button {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
       border-radius: 8px;
-      background: var(--panel);
-      color: inherit;
+      font-weight: 900;
       text-decoration: none;
-    }
-
-    .panel strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--brand);
-      font-size: 18px;
-    }
-
-    .panel span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    section {
-      padding: 32px 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    h2 {
-      margin: 0 0 14px;
-      font-size: 22px;
-      line-height: 1.35;
       letter-spacing: 0;
     }
 
-    p {
-      margin: 0 0 14px;
+    .button.primary {
+      color: #fff;
+      background: var(--brand);
+      box-shadow: 0 16px 34px rgba(123, 63, 228, 0.24);
     }
 
-    a {
-      color: var(--brand);
+    .button.secondary {
+      color: var(--brand-dark);
+      background: #f0e9ff;
+    }
+
+    .button.disabled {
+      color: #fff;
+      background: #b5adbf;
+      box-shadow: none;
+      cursor: default;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
       font-weight: 700;
-      text-decoration-thickness: 0.08em;
-      text-underline-offset: 0.18em;
     }
 
-    .contact {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
-      padding: 0 16px;
+    .showcase {
+      position: relative;
+      min-height: 560px;
+    }
+
+    .dog {
+      position: absolute;
+      right: 8px;
+      top: -28px;
+      width: clamp(92px, 14vw, 150px);
+      z-index: 4;
+      filter: drop-shadow(0 18px 30px rgba(72, 45, 112, 0.14));
+    }
+
+    .phone-cluster {
+      position: relative;
+      height: 560px;
+    }
+
+    .phone {
+      position: absolute;
+      width: min(254px, 44vw);
+      padding: 10px;
+      border-radius: 34px;
+      background: #15131c;
+      box-shadow: var(--shadow);
+    }
+
+    .phone img {
+      width: 100%;
+      border-radius: 25px;
+      aspect-ratio: 1284 / 2778;
+      object-fit: cover;
+    }
+
+    .phone.main {
+      left: 42%;
+      top: 0;
+      transform: translateX(-50%);
+      z-index: 3;
+    }
+
+    .phone.left {
+      left: 0;
+      top: 112px;
+      transform: rotate(-7deg);
+      z-index: 2;
+    }
+
+    .phone.right {
+      right: 0;
+      top: 130px;
+      transform: rotate(6deg);
+      z-index: 1;
+    }
+
+    .quick-features {
+      width: min(1160px, calc(100% - 40px));
+      margin: -8px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .quick-feature {
+      padding: 16px 16px 15px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+    }
+
+    .quick-feature strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.35;
+      font-weight: 950;
+    }
+
+    .quick-feature span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.55;
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section.soft {
+      background: var(--soft);
+    }
+
+    .section-inner {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section-title {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.02;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .section-lead {
+      margin: 18px 0 0;
+      max-width: 660px;
+      color: var(--muted);
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .feature-grid {
+      margin-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .feature {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 420px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
-      text-decoration: none;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(72, 45, 112, 0.08);
     }
 
-    .contact + .contact {
-      margin-left: 8px;
+    .feature-media {
+      padding: 18px 18px 0;
+      background: linear-gradient(180deg, #fdfcff, #f2eef9);
+    }
+
+    .feature-media img {
+      width: min(186px, 76%);
+      margin: 0 auto;
+      border-radius: 22px 22px 0 0;
+      box-shadow: 0 18px 36px rgba(33, 24, 47, 0.18);
+    }
+
+    .feature-body {
+      padding: 18px;
+    }
+
+    .feature h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .feature p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(320px, 1.12fr);
+      gap: 56px;
+      align-items: center;
+    }
+
+    .story-panel {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 16px 50px rgba(72, 45, 112, 0.10);
+    }
+
+    .story-panel h3 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.08;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .story-panel p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .wide-shot {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .wide-shot img {
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      background: #111;
+    }
+
+    .safety {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+      gap: 52px;
+      align-items: center;
+    }
+
+    .safety-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .safety-item {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .safety-item strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 950;
+    }
+
+    .safety-item span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .download {
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(123, 63, 228, 0.12), transparent 30rem),
+        #fff;
+    }
+
+    .download h2 {
+      margin: 0 auto;
+      max-width: 760px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.04;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .download p {
+      margin: 18px auto 0;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    .download .actions {
+      justify-content: center;
     }
 
     footer {
-      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .footer-inner {
+      width: min(1160px, calc(100% - 40px));
+      min-height: 112px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
       color: var(--muted);
       font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .story,
+      .safety {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase {
+        min-height: 520px;
+      }
+
+      .phone-cluster {
+        max-width: 640px;
+        height: 520px;
+        margin: 0 auto;
+      }
+
+      .quick-features,
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .nav-links a:not(.nav-cta) {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 54px 0 34px;
+      }
+
+      .hero-inner,
+      .section-inner,
+      .quick-features,
+      .footer-inner {
+        width: min(100% - 28px, 1160px);
+      }
+
+      .hero-inner {
+        gap: 38px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .showcase {
+        min-height: 420px;
+      }
+
+      .phone-cluster {
+        height: 420px;
+      }
+
+      .phone {
+        width: 184px;
+        padding: 8px;
+        border-radius: 28px;
+      }
+
+      .phone img {
+        border-radius: 21px;
+      }
+
+      .phone.main {
+        left: 50%;
+      }
+
+      .phone.left {
+        left: -12px;
+        top: 118px;
+      }
+
+      .phone.right {
+        right: -12px;
+        top: 128px;
+      }
+
+      .dog {
+        right: 4px;
+        top: -24px;
+        width: 96px;
+      }
+
+      .quick-features,
+      .feature-grid,
+      .wide-shot {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .feature {
+        min-height: 0;
+      }
+
+      .footer-inner {
+        padding: 28px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <p class="eyebrow">Oh-o! Tanni</p>
-      <h1>サポート</h1>
-      <p class="lead">明治大学生向けの時間割・教室通知アプリ「Oh-o! Tanni」のサポートページです。問い合わせ、利用規約、プライバシーポリシーを確認できます。</p>
-    </header>
-
-    <nav class="links" aria-label="主要ページ">
-      <a class="panel" href="/support/">
-        <strong>お問い合わせ</strong>
-        <span>ログイン、不具合、通知、ウィジェット、データ削除について連絡できます。</span>
+  <header class="site-header">
+    <nav class="nav" aria-label="サイト内ナビゲーション">
+      <a class="brand" href="/">
+        <img src="assets/app-icon.png" alt="" width="34" height="34">
+        <span>Oh-o! Tanni</span>
       </a>
-      <a class="panel" href="/privacy/">
-        <strong>プライバシーポリシー</strong>
-        <span>取得する情報、利用目的、外部サービス、データ削除について確認できます。</span>
-      </a>
-      <a class="panel" href="/terms/">
-        <strong>利用規約</strong>
-        <span>アプリの利用条件、禁止事項、免責事項、問い合わせ先を確認できます。</span>
-      </a>
-      <a class="panel" href="/commercial/">
-        <strong>特定商取引法に基づく表記</strong>
-        <span>運営者情報、問い合わせ先、将来有料機能を提供する場合の取引条件を確認できます。</span>
-      </a>
+      <div class="nav-links">
+        <a href="#features">機能</a>
+        <a href="/support/">サポート</a>
+        <a class="nav-cta" href="#download">App Storeで開く</a>
+      </div>
     </nav>
+  </header>
 
-    <section>
-      <h2>問い合わせ先</h2>
-      <p>アプリに関する問い合わせは、下記メールアドレスまたは電話番号までご連絡ください。</p>
-      <a class="contact" href="mailto:support@tanni.jp">support@tanni.jp</a>
-      <a class="contact" href="tel:09067281129">090-6728-1129</a>
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div>
+          <h1 id="hero-title">Oh-o! Tanni</h1>
+          <p class="hero-copy">時間割も、欠席数も、チャットも。</p>
+          <p class="hero-lead">明治生の「次どこだっけ」「あと何回休めるっけ」「この授業どう？」を、ひとつのアプリで軽くします。</p>
+          <div class="actions">
+            <a class="button primary" href="#download">App Storeで開く</a>
+            <a class="button secondary" href="#features">使い方を見る</a>
+          </div>
+          <p class="hero-note">本アプリは明治大学公式サービスではありません。授業情報は大学公式情報もあわせて確認してください。</p>
+        </div>
+
+        <div class="showcase" aria-hidden="true">
+          <img class="dog" src="assets/taninu.png" alt="">
+          <div class="phone-cluster">
+            <div class="phone left">
+              <img src="assets/iphone-absence.png" alt="">
+            </div>
+            <div class="phone main">
+              <img src="assets/iphone-timetable.png" alt="">
+            </div>
+            <div class="phone right">
+              <img src="assets/iphone-chat.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>アプリについて</h2>
-      <p>本アプリは、明治大学、Oh-o! Meiji、その他の大学公式システムが提供、運営、承認、公認または保証するサービスではありません。</p>
-      <p>授業情報は変更される場合があります。最新情報は大学公式情報もあわせて確認してください。</p>
+    <div class="quick-features" aria-label="主な機能">
+      <div class="quick-feature">
+        <strong>時間割</strong>
+        <span>普段開いたら最初に確認</span>
+      </div>
+      <div class="quick-feature">
+        <strong>欠席数記録</strong>
+        <span>授業ごとの欠席を残せる</span>
+      </div>
+      <div class="quick-feature">
+        <strong>ウィジェット</strong>
+        <span>次の授業をホーム画面に</span>
+      </div>
+      <div class="quick-feature">
+        <strong>チャット</strong>
+        <span>授業や学部の話を軽く聞ける</span>
+      </div>
+    </div>
+
+    <section id="features" class="section soft">
+      <div class="section-inner">
+        <h2 class="section-title">毎日見る場所だけ、すぐ届く。</h2>
+        <p class="section-lead">時間割、教室、欠席、チャットを行ったり来たりしない。授業前と授業後に必要なものを、明治生向けにまとめました。</p>
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-media">
+              <img src="assets/iphone-timetable.png" alt="時間割画面">
+            </div>
+            <div class="feature-body">
+              <h3>時間割</h3>
+              <p>曜日と時限で授業を見られます。アプリを開いたら、まず今日の動きがわかります。</p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="feature-media">
+              <img src="assets/iphone-absence.png" alt="欠席数記録画面">
+            </div>
+            <div class="feature-body">
+              <h3>欠席数</h3>
+              <p>授業ごとに欠席を記録。忘れがちな出席状況を、時間割と同じ場所で管理できます。</p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="feature-media">
+              <img src="assets/iphone-widget.png" alt="ウィジェット画面">
+            </div>
+            <div class="feature-body">
+              <h3>ウィジェット</h3>
+              <p>次の授業をホーム画面やロック画面から確認。アプリを開く前に、教室が目に入ります。</p>
+            </div>
+          </article>
+          <article class="feature">
+            <div class="feature-media">
+              <img src="assets/iphone-chat.png" alt="チャット画面">
+            </div>
+            <div class="feature-body">
+              <h3>チャット</h3>
+              <p>授業や学部の話を、必要なときだけ。匿名性と通報導線を前提に、使いすぎない距離感で設計しています。</p>
+            </div>
+          </article>
+        </div>
+      </div>
     </section>
 
-    <footer>
-      <p>&copy; 2026 Shori Kosaka. All rights reserved.</p>
-    </footer>
+    <section class="section">
+      <div class="section-inner story">
+        <div class="story-panel">
+          <h3>たんいぬも、ちょこちょこいます。</h3>
+          <p>時間割を見たとき、欠席を記録したとき、少しだけ気が抜けるように。実用アプリの邪魔をしない範囲で、たんいぬが画面に顔を出します。</p>
+        </div>
+        <div class="wide-shot" aria-hidden="true">
+          <img src="assets/iphone-timetable.png" alt="">
+          <img src="assets/iphone-widget.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="section-inner safety">
+        <div>
+          <h2 class="section-title">大学生活の補助として、軽く安全に。</h2>
+          <p class="section-lead">公式情報の代わりではなく、日々の確認を楽にするためのアプリです。チャットや投稿まわりも、最低限の安全導線を置いています。</p>
+        </div>
+        <div class="safety-list">
+          <div class="safety-item">
+            <strong>明治大学の公式サービスではありません</strong>
+            <span>授業情報は変更される場合があります。最終確認は大学公式情報も参照してください。</span>
+          </div>
+          <div class="safety-item">
+            <strong>問い合わせページは分離</strong>
+            <span>不具合、ログイン、データ削除はサポートページから連絡できます。</span>
+          </div>
+          <div class="safety-item">
+            <strong>規約とプライバシーを公開</strong>
+            <span>利用条件、データの扱い、特定商取引法に基づく表記を確認できます。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="section download">
+      <div class="section-inner">
+        <h2>明日の授業から、少し楽に。</h2>
+        <p>App Store 公開後、このボタンから直接アプリページを開けるようにします。いまは tanni.jp を共有先として、アプリの内容が伝わるページにしています。</p>
+        <div class="actions">
+          <span class="button disabled" aria-disabled="true">公開後にApp Storeで開く</span>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>&copy; 2026 Shori Kosaka. All rights reserved.</div>
+      <div class="footer-links" aria-label="法務とサポート">
+        <a href="/support/">サポート</a>
+        <a href="/privacy/">プライバシーポリシー</a>
+        <a href="/terms/">利用規約</a>
+        <a href="/commercial/">特定商取引法に基づく表記</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
