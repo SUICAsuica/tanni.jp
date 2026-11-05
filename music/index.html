@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3fa">
+  <title>BGMと歌詞 | Oh-o! Tanni</title>
+  <meta name="description" content="Oh-o! Tanniのアプリで流れるBGMを、ブラウザで楽しめます。全13曲の再生と歌詞、Sunoの元ページをまとめました。">
+  <link rel="canonical" href="https://tanni.jp/music/">
+  <meta property="og:title" content="BGMと歌詞 | Oh-o! Tanni">
+  <meta property="og:description" content="アプリで流れるBGMを、アプリの外でも。全13曲と歌詞を公開しています。">
+  <meta property="og:image" content="https://tanni.jp/assets/og-image.png">
+  <meta property="og:url" content="https://tanni.jp/music/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/assets/app-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="player.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#library">曲一覧へ</a>
+  <header class="site-header">
+    <nav class="nav" aria-label="サイト内ナビゲーション">
+      <a class="brand" href="/"><img src="/assets/app-icon.png" alt="" width="36" height="36"><span>Oh-o! Tanni<span class="brand-sub">MUSIC LIBRARY</span></span></a>
+      <a class="back-link" href="/">アプリについて <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow"><span class="small-disc" aria-hidden="true"></span> ORIGINAL SOUNDTRACK</p>
+        <h1 id="page-title">アプリのBGMを聴く</h1>
+        <p class="lead">Oh-o! Tanniで流れる曲を、アプリの外でも。<br>好きな曲を選んで、歌詞と一緒に楽しめます。</p>
+      </div>
+      <div class="collection-meta"><strong>13<span> tracks</span></strong><span>3 COLLECTIONS · SUNO</span></div>
+    </section>
+    <div class="music-layout">
+      <section class="player-panel" aria-label="音楽プレーヤー">
+        <div class="cover-wrap">
+          <img id="cover" class="cover" src="artwork/ohtanni-jpop-01.jpg" alt="おお！単位のジャケット" width="600" height="600" fetchpriority="high">
+          <span class="cover-label">OH-O! TANNI / SOUNDTRACK</span>
+        </div>
+        <div class="now-playing">
+          <p class="eyebrow" id="playback-state">SELECTED TRACK</p>
+          <h2 id="track-title">おお！単位</h2>
+          <p id="track-version" class="track-version">JPOP</p>
+        </div>
+        <audio id="audio" controls preload="metadata" src="audio/ohtanni-jpop-01.mp3" aria-label="おお！単位 JPOPを再生"></audio>
+        <div class="player-actions">
+          <div class="transport">
+            <button type="button" id="previous" class="icon-button" aria-label="前の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 5 8 12l11 7Z"/></svg></button>
+            <button type="button" id="next" class="icon-button" aria-label="次の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 5l11 7-11 7Z"/></svg></button>
+          </div>
+          <button type="button" id="copy-link" class="text-button">曲のリンクをコピー <span aria-hidden="true">↗</span></button>
+        </div>
+        <p id="player-status" class="player-status" role="status"></p>
+        <a id="suno-link" class="source-link" href="https://suno.com/song/0e68249e-ebab-4fdb-b202-27f0738827e3" target="_blank" rel="noopener noreferrer">Sunoの曲ページ <span aria-hidden="true">↗</span></a>
+        <noscript><p>曲一覧と歌詞の表示にはJavaScriptを有効にしてください。上のプレーヤーでは最初の曲を再生できます。</p></noscript>
+      </section>
+      <section id="library" class="library" aria-label="曲一覧と歌詞">
+        <div class="tabs" role="tablist" aria-label="表示する内容">
+          <button type="button" class="tab active" role="tab" id="tracks-tab" aria-controls="tracks-panel" aria-selected="true" tabindex="0">曲一覧 <span>13</span></button>
+          <button type="button" class="tab" role="tab" id="lyrics-tab" aria-controls="lyrics-panel" aria-selected="false" tabindex="-1">歌詞 <span aria-hidden="true">↗</span></button>
+        </div>
+        <div id="tracks-panel" role="tabpanel" aria-labelledby="tracks-tab">
+          <div class="filters" aria-label="曲のシリーズ">
+            <button type="button" class="filter active" data-group="all" aria-pressed="true">すべて</button>
+            <button type="button" class="filter" data-group="theme" aria-pressed="false">おお！単位</button>
+            <button type="button" class="filter" data-group="rain" aria-pressed="false">雨上がりの青</button>
+            <button type="button" class="filter" data-group="space" aria-pressed="false">三限目の宇宙</button>
+          </div>
+          <div class="list-caption"><span>TRACK / TITLE</span><span id="track-count">13曲</span></div>
+          <ol id="track-list" class="track-list" aria-label="再生する曲"></ol>
+          <p class="list-note">曲を選ぶと再生が始まります。再生が終わると次の曲に進みます。</p>
+        </div>
+        <div id="lyrics-panel" role="tabpanel" aria-labelledby="lyrics-tab" hidden>
+          <div class="lyrics-heading"><div><p class="eyebrow" id="lyrics-kind">LYRICS</p><h3 id="lyrics-title">おお！単位 / JPOP</h3></div><a id="lyrics-source" href="https://suno.com/song/0e68249e-ebab-4fdb-b202-27f0738827e3" target="_blank" rel="noopener noreferrer">出典 <span aria-hidden="true">↗</span></a></div>
+          <p id="lyrics-note" class="lyrics-note" hidden>Sunoの原曲ページに掲載されている歌詞です。</p>
+          <div id="lyrics" class="lyrics"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer"><a href="/">Oh-o! Tanni</a><p>アプリ内で使用している音源を掲載しています。歌詞の出典は各曲のSunoページです。</p><a href="/support/">お問い合わせ <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>
