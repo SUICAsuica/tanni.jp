@@ -13,8 +13,8 @@
   <meta property="og:url" content="https://tanni.jp/music/">
   <meta property="og:type" content="website">
   <link rel="icon" href="/assets/app-icon.png">
-  <link rel="stylesheet" href="styles.css?v=20261105-4">
-  <script src="player.js?v=20261105-4" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261105-5">
+  <script src="player.js?v=20261105-5" defer></script>
 </head>
 <body>
   <div id="intro-screen" class="intro-screen" aria-label="Oh-o! Tanniのロゴアニメーション">
@@ -52,11 +52,38 @@
           <p id="track-version" class="track-version">JPOP</p>
         </div>
         <audio id="audio" controls preload="metadata" src="audio/ohtanni-jpop-01.mp3" aria-label="おお！単位 JPOPを再生"></audio>
-        <div class="player-actions">
-          <div class="transport">
-            <button type="button" id="previous" class="icon-button" aria-label="前の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 5 8 12l11 7Z"/></svg></button>
-            <button type="button" id="next" class="icon-button" aria-label="次の曲"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 5l11 7-11 7Z"/></svg></button>
+        <div id="playback-controls" class="playback-controls" hidden>
+          <div class="timeline">
+            <label class="sr-only" for="seek">再生位置</label>
+            <input id="seek" class="seek-range" type="range" min="0" max="0" step="0.1" value="0" disabled aria-valuetext="0分0秒">
+            <div class="timecodes">
+              <span><span id="elapsed">0:00</span><span class="duration-label"> / <span id="duration">0:00</span></span></span>
+              <span id="remaining">残り 0:00</span>
+            </div>
           </div>
+          <div class="transport">
+            <button type="button" id="previous" class="icon-button" aria-label="前の曲" title="前の曲" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 5 8 12l11 7Z"/></svg></button>
+            <button type="button" id="play-toggle" class="play-button" aria-label="再生">
+              <svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg>
+              <svg id="pause-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M7 5h3v14H7zm7 0h3v14h-3z"/></svg>
+              <span id="play-label">再生</span>
+            </button>
+            <button type="button" id="next" class="icon-button" aria-label="次の曲" title="次の曲" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 5l11 7-11 7Z"/></svg></button>
+          </div>
+          <div class="player-utilities">
+            <button type="button" id="stop" class="stop-button" aria-label="停止して先頭に戻す" title="停止して先頭に戻す" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg><span>停止</span></button>
+            <div class="volume-controls">
+              <button type="button" id="mute" class="icon-button" aria-label="音を消す" title="音を消す">
+                <svg id="volume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m11 4-6 5H2v6h3l6 5Z"/><path class="volume-wave" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg>
+                <svg id="muted-icon" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="m11 4-6 5H2v6h3l6 5Z"/><path class="volume-wave" d="m16 9 5 6m0-6-5 6"/></svg>
+              </button>
+              <label class="sr-only" for="volume">音量</label>
+              <input id="volume" class="volume-range" type="range" min="0" max="1" step="0.01" value="1" aria-valuetext="100%">
+              <span id="device-volume" class="device-volume" hidden>音量は端末で調整</span>
+            </div>
+          </div>
+        </div>
+        <div class="player-actions">
           <button type="button" id="copy-link" class="text-button">曲のリンクをコピー <span aria-hidden="true">↗</span></button>
         </div>
         <p id="player-status" class="player-status" role="status"></p>
