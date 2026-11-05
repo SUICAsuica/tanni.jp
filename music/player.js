@@ -98,7 +98,7 @@
       number.setAttribute('aria-hidden', 'true');
       const image = document.createElement('img');
       image.className = 'track-thumb';
-      image.src = track.artwork;
+      image.src = track.thumbnail || track.artwork;
       image.alt = '';
       image.width = 44;
       image.height = 44;
@@ -140,10 +140,8 @@
     const cover = document.querySelector('#cover');
     cover.src = track.artwork;
     cover.alt = track.title + 'のジャケット';
-    document.querySelector('#suno-link').href = track.source;
     document.querySelector('#lyrics-title').textContent = track.title + ' / ' + track.version;
     document.querySelector('#lyrics').textContent = track.lyrics || 'この曲の歌詞はまだ掲載していません。';
-    document.querySelector('#lyrics-source').href = track.lyricsSource;
     const original = track.lyricsKind === 'original';
     document.querySelector('#lyrics-kind').textContent = original ? '原曲の歌詞（参考）' : '歌詞';
     document.querySelector('#lyrics-note').hidden = !original;
@@ -213,7 +211,7 @@
   });
 
   try {
-    const response = await fetch('tracks.json?v=20261105-3');
+    const response = await fetch('tracks.json?v=20261105-4');
     if (!response.ok) throw new Error('Track list request failed');
     tracks = await response.json();
     if (!Array.isArray(tracks) || !tracks.length) throw new Error('No tracks');
