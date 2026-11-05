@@ -127,7 +127,7 @@
     document.querySelector('#lyrics').textContent = track.lyrics || 'この曲の歌詞はまだ掲載していません。';
     document.querySelector('#lyrics-source').href = track.lyricsSource;
     const original = track.lyricsKind === 'original';
-    document.querySelector('#lyrics-kind').textContent = original ? '原曲の歌詞' : 'LYRICS';
+    document.querySelector('#lyrics-kind').textContent = original ? '原曲の歌詞（参考）' : 'LYRICS';
     document.querySelector('#lyrics-note').hidden = !original;
     status.textContent = '';
     document.title = track.title + ' / ' + track.version + ' | Oh-o! Tanni BGM';
