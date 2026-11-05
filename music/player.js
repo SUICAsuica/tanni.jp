@@ -1,6 +1,24 @@
 'use strict';
 
 (async function () {
+  const intro = document.querySelector('#intro-screen');
+  const page = document.querySelector('#page-content');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let introTimer;
+  function closeIntro() {
+    clearTimeout(introTimer);
+    intro.hidden = true;
+    page.inert = false;
+  }
+  if (reducedMotion) closeIntro();
+  else {
+    page.inert = true;
+    introTimer = setTimeout(closeIntro, 2200);
+    document.querySelector('#skip-intro').addEventListener('click', closeIntro);
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !intro.hidden) closeIntro();
+    });
+  }
   const audio = document.querySelector('#audio');
   const status = document.querySelector('#player-status');
   const list = document.querySelector('#track-list');
@@ -41,7 +59,7 @@
   });
 
   function updatePlayback() {
-    document.querySelector('#playback-state').textContent = audio.paused ? 'SELECTED TRACK' : 'NOW PLAYING';
+    document.querySelector('#playback-state').textContent = audio.paused ? '選択中の曲' : '再生中';
     list.querySelectorAll('.track-button').forEach(function (button) {
       const index = Number(button.dataset.index);
       const active = index === current;
@@ -127,7 +145,7 @@
     document.querySelector('#lyrics').textContent = track.lyrics || 'この曲の歌詞はまだ掲載していません。';
     document.querySelector('#lyrics-source').href = track.lyricsSource;
     const original = track.lyricsKind === 'original';
-    document.querySelector('#lyrics-kind').textContent = original ? '原曲の歌詞（参考）' : 'LYRICS';
+    document.querySelector('#lyrics-kind').textContent = original ? '原曲の歌詞（参考）' : '歌詞';
     document.querySelector('#lyrics-note').hidden = !original;
     status.textContent = '';
     document.title = track.title + ' / ' + track.version + ' | Oh-o! Tanni BGM';
@@ -195,7 +213,7 @@
   });
 
   try {
-    const response = await fetch('tracks.json');
+    const response = await fetch('tracks.json?v=20261105-3');
     if (!response.ok) throw new Error('Track list request failed');
     tracks = await response.json();
     if (!Array.isArray(tracks) || !tracks.length) throw new Error('No tracks');

@@ -13,34 +13,41 @@
   <meta property="og:url" content="https://tanni.jp/music/">
   <meta property="og:type" content="website">
   <link rel="icon" href="/assets/app-icon.png">
-  <link rel="stylesheet" href="styles.css">
-  <script src="player.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261105-3">
+  <script src="player.js?v=20261105-3" defer></script>
 </head>
 <body>
+  <div id="intro-screen" class="intro-screen" aria-label="Oh-o! Tanniのロゴアニメーション">
+    <div class="intro-logo" aria-hidden="true">
+      <div class="intro-brand"><span>O</span><span>h</span><span>-</span><span>o</span><span>!</span></div>
+      <img class="intro-dog" src="intro-taninu.gif" alt="" width="140" height="180">
+      <div class="intro-tanni">Tanni</div>
+    </div>
+    <button type="button" id="skip-intro" class="skip-intro">スキップ</button>
+  </div>
+  <div id="page-content">
   <a class="skip-link" href="#library">曲一覧へ</a>
   <header class="site-header">
     <nav class="nav" aria-label="サイト内ナビゲーション">
-      <a class="brand" href="/"><img src="/assets/app-icon.png" alt="" width="36" height="36"><span>Oh-o! Tanni<span class="brand-sub">MUSIC LIBRARY</span></span></a>
+      <a class="brand" href="/"><img src="/assets/app-icon.png" alt="" width="36" height="36"><span>Oh-o! Tanni<span class="brand-sub">BGMと歌詞</span></span></a>
       <a class="back-link" href="/">アプリについて <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
   <main class="page">
     <section class="intro" aria-labelledby="page-title">
       <div>
-        <p class="eyebrow"><span class="small-disc" aria-hidden="true"></span> ORIGINAL SOUNDTRACK</p>
         <h1 id="page-title">アプリのBGMを聴く</h1>
-        <p class="lead">Oh-o! Tanniで流れる曲を、アプリの外でも。<br>好きな曲を選んで、歌詞と一緒に楽しめます。</p>
+        <p class="lead">アプリで流れる13曲を、<br class="mobile-break">歌詞と一緒に楽しめます。</p>
       </div>
-      <div class="collection-meta"><strong>13<span> tracks</span></strong><span>3 COLLECTIONS · SUNO</span></div>
+      <div class="collection-meta"><strong>13<span> 曲</span></strong><span>全3シリーズ</span></div>
     </section>
     <div class="music-layout">
       <section class="player-panel" aria-label="音楽プレーヤー">
         <div class="cover-wrap">
           <img id="cover" class="cover" src="artwork/ohtanni-jpop-01.jpg" alt="おお！単位のジャケット" width="600" height="600" fetchpriority="high">
-          <span class="cover-label">OH-O! TANNI / SOUNDTRACK</span>
         </div>
         <div class="now-playing">
-          <p class="eyebrow" id="playback-state">SELECTED TRACK</p>
+          <p class="eyebrow" id="playback-state">選択中の曲</p>
           <h2 id="track-title">おお！単位</h2>
           <p id="track-version" class="track-version">JPOP</p>
         </div>
@@ -68,12 +75,12 @@
             <button type="button" class="filter" data-group="rain" aria-pressed="false">雨上がりの青</button>
             <button type="button" class="filter" data-group="space" aria-pressed="false">三限目の宇宙</button>
           </div>
-          <div class="list-caption"><span>TRACK / TITLE</span><span id="track-count">13曲</span></div>
+          <div class="list-caption"><span>曲名</span><span id="track-count">13曲</span></div>
           <ol id="track-list" class="track-list" aria-label="再生する曲"></ol>
           <p class="list-note">曲を選ぶと再生が始まります。再生が終わると次の曲に進みます。</p>
         </div>
         <div id="lyrics-panel" role="tabpanel" aria-labelledby="lyrics-tab" hidden>
-          <div class="lyrics-heading"><div><p class="eyebrow" id="lyrics-kind">LYRICS</p><h3 id="lyrics-title">おお！単位 / JPOP</h3></div><a id="lyrics-source" href="https://suno.com/song/0e68249e-ebab-4fdb-b202-27f0738827e3" target="_blank" rel="noopener noreferrer">出典 <span aria-hidden="true">↗</span></a></div>
+          <div class="lyrics-heading"><div><p class="eyebrow" id="lyrics-kind">歌詞</p><h3 id="lyrics-title">おお！単位 / JPOP</h3></div><a id="lyrics-source" href="https://suno.com/song/0e68249e-ebab-4fdb-b202-27f0738827e3" target="_blank" rel="noopener noreferrer">出典 <span aria-hidden="true">↗</span></a></div>
           <p id="lyrics-note" class="lyrics-note" hidden>再生音源の歌詞との一致は未確認です。参考として、Sunoの原曲ページに残っていた歌詞を掲載しています。</p>
           <div id="lyrics" class="lyrics"></div>
         </div>
@@ -81,5 +88,6 @@
     </div>
   </main>
   <footer class="footer"><a href="/">Oh-o! Tanni</a><p>アプリ内で使用している音源を掲載しています。歌詞の出典は各曲のSunoページです。</p><a href="/support/">お問い合わせ <span aria-hidden="true">↗</span></a></footer>
+  </div>
 </body>
 </html>
